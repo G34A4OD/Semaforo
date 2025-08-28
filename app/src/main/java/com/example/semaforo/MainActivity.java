@@ -5,39 +5,36 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn_cambiar;
 
     int bucle = 0;
-    ImageView imageRojo;
+    ImageView imagen1, imagen2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //conectar xml con javs
+        // conectar xml con java
         setContentView(R.layout.activity_main);
 
         btn_cambiar = findViewById(R.id.btn_cambiar);
-        imageRojo = findViewById(R.id.imageRojo);
+        imagen1 = findViewById(R.id.imagen1);
+        imagen2 = findViewById(R.id.imagen2);
 
-        btn_cambiar.setOnClickListener(new View.OnClickListener(){
+        btn_cambiar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
-                Thread thread = new Thread(new Runnable(){
+            public void onClick(View view) {
+
+                // Primer hilo: controla imagen1
+                Thread thread1 = new Thread(new Runnable() {
                     @Override
-                    public void run (){
-
-//Primer cambio de imagen
-                        //bucle por que si
+                    public void run() {
                         while (bucle <= 20) {
-                            //Solo ejecuta el tiempo para que la imagen cambie
+
+                            // Espera 5 segundos
                             for (int i = 0; i < 5; i++) {
                                 try {
                                     Thread.sleep(1000);
@@ -45,15 +42,13 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            //Luego del tiempo se ejecuta el cambio de la imagen
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    imageRojo.setImageResource(R.drawable.amarillo);
+                                    imagen1.setImageResource(R.drawable.amarillo);
                                 }
                             });
 
-                            //bucel que devuelve la imagen a su lugar
                             for (int i = 0; i < 5; i++) {
                                 try {
                                     Thread.sleep(1000);
@@ -61,16 +56,13 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            //Luego del tiempo se ejecuta el cambio de la imagen
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    int verde = R.drawable.verde;
-                                    imageRojo.setImageResource(verde);
-
+                                    imagen1.setImageResource(R.drawable.verde);
                                 }
                             });
-                            //bucel que devuelve la imagen a su lugar
+
                             for (int i = 0; i < 5; i++) {
                                 try {
                                     Thread.sleep(1000);
@@ -78,22 +70,73 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            //Luego del tiempo se ejecuta el cambio de la imagen
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    int rojo = R.drawable.rojo;
-                                    imageRojo.setImageResource(rojo);
-
+                                    imagen1.setImageResource(R.drawable.rojo);
                                 }
                             });
+
+                            bucle++;
                         }
                     }
                 });
-                //Termina el hilo
-                thread.start();
+                thread1.start();
+
+                // Segundo hilo: controla imagen2
+                Thread thread2 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (bucle <= 20) {
+
+                            for (int i = 0; i < 5; i++) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imagen2.setImageResource(R.drawable.amarillo);
+                                }
+                            });
+
+                            for (int i = 0; i < 5; i++) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imagen2.setImageResource(R.drawable.rojo);
+                                }
+                            });
+
+                            for (int i = 0; i < 5; i++) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imagen2.setImageResource(R.drawable.verde);
+                                }
+                            });
+
+                            bucle++;
+                        }
+                    }
+                });
+                thread2.start();
             }
         });
-
     }
 }

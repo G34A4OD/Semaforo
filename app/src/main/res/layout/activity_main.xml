@@ -27,19 +27,35 @@
             android:text="Fase-2" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
-            android:layout_marginStart="85dp"
+            android:layout_marginStart="120dp"
             app:cardCornerRadius="120dp">
 
             <ImageView
-                android:id="@+id/imageRojo"
+                android:id="@+id/imagen1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/imagen"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/rojo" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="120dp"
+            app:cardCornerRadius="120dp">
+
+            <ImageView
+                android:id="@+id/imagen2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/imagen"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/verde" />
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
