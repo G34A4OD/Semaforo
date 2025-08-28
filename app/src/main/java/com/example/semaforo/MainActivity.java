@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //conectar xml con javs
         setContentView(R.layout.activity_main);
 
         btn_cambiar = findViewById(R.id.btn_cambiar);
