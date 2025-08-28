@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     Button btn_cambiar;
 
     int bucle = 0;
-    ImageView imageGris;
     ImageView imageRojo;
 
     @Override
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_cambiar = findViewById(R.id.btn_cambiar);
-        imageGris = findViewById(R.id.imageGris);
         imageRojo = findViewById(R.id.imageRojo);
 
         btn_cambiar.setOnClickListener(new View.OnClickListener(){
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 Thread thread = new Thread(new Runnable(){
                     @Override
                     public void run (){
-
 
 //Primer cambio de imagen
                         //bucle por que si
@@ -52,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    imageRojo.setImageResource(R.drawable.gris);
-                                    imageGris.setImageResource(R.drawable.rojo);
+                                    imageRojo.setImageResource(R.drawable.amarillo);
                                 }
                             });
 
@@ -69,10 +65,26 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    int imagenRojo = R.drawable.rojo;
-                                    int imagenGris = R.drawable.gris;
-                                    imageRojo.setImageResource(imagenRojo);
-                                    imageGris.setImageResource(imagenGris);
+                                    int verde = R.drawable.verde;
+                                    imageRojo.setImageResource(verde);
+
+                                }
+                            });
+                            //bucel que devuelve la imagen a su lugar
+                            for (int i = 0; i < 5; i++) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //Luego del tiempo se ejecuta el cambio de la imagen
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    int rojo = R.drawable.rojo;
+                                    imageRojo.setImageResource(rojo);
+
                                 }
                             });
                         }
